@@ -1,1 +1,1 @@
-# cyf-template-orm-gauth
+# Starter Kit
