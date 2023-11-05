@@ -2,7 +2,7 @@ import http from "node:http";
 
 import app from "./app";
 import { connectDb, disconnectDb } from "./db";
-import config from "./utils/config";
+import config from "./utils/db_config";
 import logger from "./utils/logger";
 
 const server = http.createServer(app);

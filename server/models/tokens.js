@@ -6,6 +6,7 @@ module.exports = (sequelize, DataTypes) => {
 		/* eslint-disable-next-line */
 		static associate(models) {}
 	}
+
 	Tokens.init(
 		{
 			token: DataTypes.TEXT,

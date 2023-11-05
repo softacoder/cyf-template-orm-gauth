@@ -1,7 +1,7 @@
 import express from "express";
 
-import apiRouter from "./api";
-import config from "./utils/config";
+import router from "./api/api";
+import config from "./utils/db_config";
 import {
 	clientRouter,
 	configuredHelmet,
@@ -23,7 +23,7 @@ if (config.production) {
 	app.use(httpsOnly());
 }
 
-app.use(apiRoot, apiRouter);
+app.use(apiRoot, router);
 app.use("/health", (_, res) => res.sendStatus(200));
 app.use(clientRouter(apiRoot));
 

@@ -1,6 +1,6 @@
 import { Pool } from "pg";
 
-import config from "./utils/config";
+import config from "./utils/db_config";
 import logger from "./utils/logger";
 
 const pool = new Pool({
@@ -24,11 +24,3 @@ export const connectDb = async () => {
 };
 
 export const disconnectDb = () => pool.end();
-
-
-export default {
-	query: (...args) => {
-		logger.debug("Postgres querying %O", args);
-		return pool.query.apply(pool, args);
-	},
-};

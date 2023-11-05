@@ -1,5 +1,5 @@
-import { useState, createContext, useEffect } from "react";
-import { Routes, Route } from "react-router-dom";
+import { createContext, useEffect, useState } from "react";
+import { Route, Routes } from "react-router-dom";
 import Home from "./pages/Home";
 import Header from "./Components/Header";
 import Footer from "./Components/Footer";
@@ -13,7 +13,6 @@ const App = () => {
 	const [clientId, setClientId] = useState(null);
 	const [isLoggedIn, setIsLoggedIn] = useState(false);
 
-
 	useEffect(() => {
 		async function fetchClientId() {
 			try {
@@ -24,6 +23,7 @@ const App = () => {
 				console.error("Error fetching client ID:", error);
 			}
 		}
+
 		fetchClientId();
 	}, []);
 

@@ -1,16 +1,10 @@
-import React, { useCallback, useContext, useEffect, useState } from "react";
-import {
-	Typography,
-	Box,
-	Container,
-	CardMedia,
-} from "@mui/material";
+import React, { useCallback, useContext, useEffect } from "react";
+import { Box, CardMedia, Container, Typography } from "@mui/material";
 import useAuth from "../customHooks/useAuth";
 import { AppContext } from "../App";
 
 const MyProfile = () => {
-	const { user, isLoggedIn, setIsLoggedIn } =
-		useContext(AppContext);
+	const { user, isLoggedIn, setIsLoggedIn } = useContext(AppContext);
 	const { handleSignOut, getJwtToken } = useAuth();
 
 	const sendingToken = useCallback(

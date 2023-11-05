@@ -6,6 +6,7 @@ module.exports = (sequelize, DataTypes) => {
 		/* eslint-disable-next-line */
 		static associate(models) {}
 	}
+
 	Users.init(
 		{
 			email: DataTypes.STRING,

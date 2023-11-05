@@ -1,8 +1,9 @@
 import { Router } from "express";
-import logger from "./utils/logger";
+
 const dotenv = require("dotenv");
 const { OAuth2Client } = require("google-auth-library");
-const { Users, Tokens } = require("./models");
+const { Users, Tokens } = require("./../models");
+import logger from "./../utils/logger";
 
 dotenv.config();
 
@@ -59,7 +60,6 @@ router.post("/validation", async (req, res) => {
 		}
 		res.status(200).json({ message: "success!" });
 	} catch (error) {
-	    console.log(error)
 		res.status(500).json({ message: "Invalid token!" });
 	}
 });

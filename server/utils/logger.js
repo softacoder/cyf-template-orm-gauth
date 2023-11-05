@@ -1,6 +1,6 @@
 import { createLogger, format, transports } from "winston";
 
-import config from "./config";
+import config from "./db_config";
 
 const logger = createLogger({
 	format: format.combine(
