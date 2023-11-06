@@ -10,6 +10,7 @@ dotenv.config();
 const router = Router();
 
 router.get("/health", (_, res) => {
+	logger.info("Calling health endpoint");
 	try {
 		let serverOk = true;
 		let dbOk = false;

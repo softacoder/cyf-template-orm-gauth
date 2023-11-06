@@ -1,14 +1,16 @@
 import "dotenv/config";
 
-function createDatabaseUrl() {
-	if (process.env.DATABASE_URL) {
-		return process.env.DATABASE_URL;
+export function createDatabaseUrl(
+	full_url,
+	host,
+	name,
+	port,
+	password,
+	username
+) {
+	if (full_url) {
+		return full_url;
 	}
-	const host = process.env.DB_HOST ?? "localhost";
-	const name = process.env.DB_NAME ?? "cyf";
-	const password = process.env.DB_PASS ?? process.env.DB_PASSWORD ?? "";
-	const port = process.env.DB_PORT ?? "5432";
-	const username = process.env.DB_USER ?? process.env.DB_USERNAME ?? "";
 	const userinfo = `${username}:${password}`;
 	return `postgres://${
 		userinfo !== ":" ? `${userinfo}@` : ""
@@ -16,7 +18,15 @@ function createDatabaseUrl() {
 }
 
 export default {
-	dbUrl: createDatabaseUrl(),
+	dbUrl: createDatabaseUrl(
+		process.env.DATABASE_URL,
+		process.env.DB_HOST ?? "localhost",
+		process.env.DB_NAME ?? "cyf",
+		process.env.DB_PORT ?? "5432",
+		process.env.DB_PASS ?? process.env.DB_PASSWORD ?? "",
+		process.env.DB_PASS ?? process.env.DB_PASSWORD ?? "",
+		process.env.DB_USER ?? process.env.DB_USERNAME ?? ""
+	),
 	logLevel: process.env.LOG_LEVEL ?? "info",
 	port: parseInt(process.env.PORT ?? "3000", 10),
 	production: process.env.NODE_ENV === "production",

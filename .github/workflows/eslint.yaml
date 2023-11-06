@@ -1,0 +1,23 @@
+on:
+  push:
+name: example
+jobs:
+  lint:
+    name: run lint
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - name: install dependencies
+        run: npm install
+      - name: run lint command
+        run: npm run lint
+  test:
+    name: run test
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - name: install dependencies
+        run: npm install
+      - name: run test command
+        run: npm run test
+#https://docs:github:com/en/actions/using-containerized-services/creating-postgresql-service-containers
