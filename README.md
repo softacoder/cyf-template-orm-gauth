@@ -22,13 +22,17 @@ Setup the environment variables. The following are needed:
 
 ### 3. Migrate the database
 
-- copy the .env file to the server folder
-- cd to the `server` folder
 - run `npx sequelize-cli db:migrate`
+- run `NODE_ENV=test npx sequelize-cli db:migrate`
 
 ### 4. Run the applications
 
 - cd to the root folder
 - run `npm run dev`
+
+### 5. Test
+
+- cd to the root folder
+- run `npm run test`
 
 ## Developer Guide

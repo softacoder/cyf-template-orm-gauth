@@ -22,7 +22,7 @@ RUN npm run build
 
 FROM node:${NODE_RELEASE}-alpine${ALPINE_RELEASE}
 
-LABEL maintainer="Jonathan Sharpe"
+LABEL maintainer="Jarrod Folino"
 
 USER node
 WORKDIR /home/node
