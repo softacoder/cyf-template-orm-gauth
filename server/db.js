@@ -1,6 +1,6 @@
 import { Pool } from "pg";
 
-import config from "./utils/db_config";
+import config from "./utils/config";
 import logger from "./utils/logger";
 
 const pool = new Pool({

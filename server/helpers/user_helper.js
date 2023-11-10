@@ -1,6 +1,6 @@
 const { Users, Tokens } = require("../models");
 
-async function saveUser(name, email, role, token) {
+export async function saveUser(name, email, role, token) {
 	const user = await Users.findOne({ where: { email } });
 	if (!user) {
 		const newUser = await Users.create({ name, email, role });
@@ -13,13 +13,21 @@ async function saveUser(name, email, role, token) {
 	}
 }
 
-async function deleteUser(token) {
+export async function findUserByEmail(email) {
+	return await Users.findOne({ where: { email } });
+}
+
+export async function truncateUsers() {
+	await Users.truncate({ cascade: true, restartIdentity: true });
+}
+
+export async function deleteUser(token) {
 	const latestToken = await Tokens.findOne({ where: { token } });
 	if (!latestToken) {
-		res.status(404).json({ error: "Token not found" });
+		return false;
 	} else {
 		await Tokens.destroy({ where: { user_id: latestToken.user_id } });
 		await Users.destroy({ where: { id: latestToken.user_id } });
-		res.status(200).json({ message: "Your account is deleted!" });
+		return true;
 	}
 }

@@ -4,6 +4,7 @@ const dotenv = require("dotenv");
 const { OAuth2Client } = require("google-auth-library");
 const { Users, Tokens } = require("./../models");
 import logger from "./../utils/logger";
+import { saveUser, deleteUser } from "./../helpers/user_helper";
 
 dotenv.config();
 
@@ -49,18 +50,10 @@ router.post("/validation", async (req, res) => {
 		});
 		const payload = ticket.getPayload();
 		const { name, email } = payload;
-		let user = await Users.findOne({ where: { email } });
-		if (!user) {
-			const newUser = await Users.create({ name, email, role });
-			await Tokens.create({ token, user_id: newUser.id });
-		} else {
-			let currentToken = await Tokens.findOne({ where: { token } });
-			if (!currentToken) {
-				await Tokens.create({ token, user_id: user.id });
-			}
-		}
+		await saveUser(name, email, role, token);
 		res.status(200).json({ message: "success!" });
 	} catch (error) {
+		logger.error(error);
 		res.status(500).json({ message: "Invalid token!" });
 	}
 });
@@ -71,16 +64,14 @@ router.delete("/profile", async (req, res) => {
 		if (!token) {
 			res.status(400).json({ error: "Missing token!" });
 		} else {
-			const latestToken = await Tokens.findOne({ where: { token } });
-			if (!latestToken) {
-				res.status(404).json({ error: "Token not found" });
-			} else {
-				await Tokens.destroy({ where: { user_id: latestToken.user_id } });
-				await Users.destroy({ where: { id: latestToken.user_id } });
+			if (await deleteUser(token)) {
 				res.status(200).json({ message: "Your account is deleted!" });
+			} else {
+				res.status(404).json({ error: "Token not found" });
 			}
 		}
 	} catch (error) {
+		logger.error(error);
 		res.status(500).json({ error });
 	}
 });
