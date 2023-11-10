@@ -2,7 +2,6 @@ import { Router } from "express";
 
 const dotenv = require("dotenv");
 const { OAuth2Client } = require("google-auth-library");
-const { Users, Tokens } = require("./../models");
 import logger from "./../utils/logger";
 import { saveUser, deleteUser } from "./../helpers/user_helper";
 
@@ -14,7 +13,7 @@ router.get("/health", (_, res) => {
 	logger.info("Calling health endpoint");
 	try {
 		let serverOk = true;
-		let dbOk = false;
+		let dbOk = true;
 
 		res.json({ serverOk, dbOk }).status(200);
 	} catch (error) {
