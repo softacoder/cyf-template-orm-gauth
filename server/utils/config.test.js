@@ -1,4 +1,4 @@
-import { createDatabaseUrl } from "./db_config";
+import { createDatabaseUrl } from "./config";
 
 describe("config", () => {
 	describe("createDatabaseUrl", () => {

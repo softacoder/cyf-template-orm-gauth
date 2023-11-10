@@ -1,7 +1,7 @@
 import express from "express";
 
 import router from "./api/api";
-import config from "./utils/db_config";
+import config from "./utils/config";
 import {
 	clientRouter,
 	configuredHelmet,

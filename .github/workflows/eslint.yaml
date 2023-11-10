@@ -14,6 +14,14 @@ jobs:
   test:
     name: run test
     runs-on: ubuntu-latest
+    env:
+      TEST_DB_USERNAME: ieqovpfr
+      TEST_DB_PASSWORD: SMTvmfONN73gNGHjmwNvBBF1sAMALoyx
+      TEST_DB_DATABASE: ieqovpfr
+      TEST_DB_NAME: ieqovpfr
+      TEST_DB_HOST: flora.db.elephantsql.com
+      TEST_DB_PORT: 5432
+      NODE_ENV: test
     steps:
       - uses: actions/checkout@v4
       - name: install dependencies
