@@ -57,19 +57,41 @@ function getLogLevelForEnv(env) {
 	return process.env.LOG_LEVEL ?? "info";
 }
 
+// function getPortForEnv(env) {
+// 	if (env == "development") {
+// 		return process.env.PORT;
+// 	}
+// 	if (env == "test") {
+// 		return process.env.PORT;
+// 	}
+// 	return process.env.PORT ?? "3000";
+// }
+
+
+// export default {
+// 	dbUrl: getDbForEnv(process.env.NODE_ENV),
+// 	logLevel: getLogLevelForEnv(process.env.NODE_ENV),
+// 	port: parseInt(getPortForEnv(process.env.NODE_ENV), 10),
+// 	production: process.env.NODE_ENV === "production",
+// };
+
 function getPortForEnv(env) {
-	if (env == "development") {
-		return process.env.PORT;
-	}
-	if (env == "test") {
-		return process.env.PORT;
-	}
-	return process.env.PORT ?? "3000";
+    const port = parseInt(process.env.SERVER_PORT, 10);
+
+    if (!isNaN(port) && port >= 0 && port < 65536) {
+        console.log('Parsed SERVER_PORT:', port);
+        return port;
+    } else {
+        console.log('Invalid SERVER_PORT. Using default port 3000.');
+        return 3000;
+    }
 }
 
+console.log('Using port:', getPortForEnv(process.env.NODE_ENV));
+
 export default {
-	dbUrl: getDbForEnv(process.env.NODE_ENV),
-	logLevel: getLogLevelForEnv(process.env.NODE_ENV),
-	port: parseInt(getPortForEnv(process.env.NODE_ENV), 10),
-	production: process.env.NODE_ENV === "production",
+    dbUrl: getDbForEnv(process.env.NODE_ENV),
+    logLevel: getLogLevelForEnv(process.env.NODE_ENV),
+    port: getPortForEnv(process.env.NODE_ENV),
+    production: process.env.NODE_ENV === "production",
 };

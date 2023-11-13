@@ -43,7 +43,7 @@ const Header = () => {
 								cursor: "pointer",
 							}}
 						>
-							My App
+							STAR
 						</Typography>
 					</MenuItem>
 				</MenuList>

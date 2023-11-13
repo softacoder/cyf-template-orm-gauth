@@ -3,5 +3,13 @@
 	"editor.codeActionsOnSave": {
 		"source.fixAll.eslint": true
 	},
-	"files.eol": "\n"
+	"files.eol": "\n",
+	"cSpell.words": [
+		"buildinfo",
+		"codeyourfuture",
+		"crossorigin",
+		"hstore",
+		"postbuild",
+		"sequalize"
+	]
 }
